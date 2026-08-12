@@ -53,3 +53,44 @@ print("Média:", media(a,b))
 
 #Precisamos aqui de 2 argumentos obrigatorios e infinitos argumentos opcionais no args
 
+
+def soma(a:float, b:float, *args)->float:
+  valores = [a,b] + list(args)
+  return sum(valores)
+
+def media(a:float, b:float, *args)->float:
+  return soma(a, b, *args) / (len(args)+2) # + 2 argumentos obrigatorios
+
+a = float(input("entre com o valor de a: "))
+b = float(input("entre com o valor de b: "))
+c = float(input("entre com o valor de c: "))
+d = float(input("entre com o valor de c: "))
+
+
+# Aqui o valor de c,d está indo pro args, pq a e b sao obrigatorios, o resto é extra
+
+
+print("Média:", media(a,b,c,d))
+
+
+# %%                   **KWARGS
+
+"""O KWARGS cria um dicionario com chave e valor que eu posso invocar na hora da chamada da funcao """
+
+def calc_imposto(preco:float, tx_base:float, ** kwargs):
+  imposto = preco * tx_base
+
+  for i in kwargs:
+    print(i, kwargs[i])
+    imposto += preco * kwargs[i]
+
+  return imposto
+
+impostos_gerais = { 
+  "municipio":0.01,
+  "estadual":0.005,
+  "nacional":0.001
+}
+calc_imposto(100, 0.03,**impostos_gerais )
+
+# %%
